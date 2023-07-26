@@ -1,0 +1,145 @@
+bubble sort:-
+public class bubble{
+    public static void bubblesort(int[] arr){
+        for(int i=0;i<arr.length-1;i++){
+            int temp=0;
+            for(int j=0;j<arr.length-i-1;j++){
+                if(arr[j]>arr[j+1]){ //each adjesent pair is compared & elements are swapped
+                    temp=arr[j];
+                    arr[j]=arr[j+1];
+                    arr[j+1]=temp;
+                }
+            }
+        }
+    }
+}
+public static void main(String args){
+    int[] arr={1,3,2,7,5,9};
+    bubblesort(arr);
+    for(int i : arr){
+        sysout(i);
+    }
+}
+-----------------------------------------------------------------------------------------
+Insertion sort:-
+public class insertionSort{
+    public static void insertion(int[] arr,int n){
+        for(int i=1;i<n;i++){
+            int j=i-1;       //sublist is maintain which is always sorted,n-1 passes req to sort
+            int temp=arr[i];
+            while(j>=0 && arr[j]>temp){
+                arr[j+1]=arr[j];
+                j=j-1;
+            }
+            arr[j+1]=temp;
+        }
+    }
+    public static void main(String[] args){
+        int[] arr={1,3,2,4,5,7};
+        insertion(arr,arr.length);
+        for(int i : arr){
+            sysout(i);
+        }
+    }
+}
+---------------------------------------------------------------------------------
+selection sort:-
+public class selectionSort{
+  public void main selection(int[] arr,int n){
+    for(int i=0;i<n;i++){
+        int min=i;       //list is divided in two parts-sorted and unsorted
+        for(int j=i+1;j<n;j++){  //find lowest element and swap to first
+            if(arr[i]>arr[j])
+            min=j;
+        }
+        int temp=arr[min];
+        arr[min]=arr[i];
+        arr[i]=temp;
+    }
+  }
+  public static void main(String[] args){
+    int[] arr={1,4,7,2,9};
+    selection(arr,arr.length);
+    for(int i : arr){
+        sysout(i);
+    }
+  }
+}
+-----------------------------------------------------------------------------------
+Quick sort:-
+public class quickSort{
+    public static void quicksort(int[] arr,int low,int high){
+        if(low<high){
+            int a=partition(arr,low,high);
+            quicksort(arr,low,a-1);
+            quicksort(arr,a+1,high);
+        } //partitioning of array in smaller array,pivot element is taken
+    }
+    private static int partition(int[] arr,int low,int high){
+        int i=low,j=low;
+        int piot=arr[high];
+        while(i<=high){
+            if(arr[i]<=piot){
+                int temp=arr[i];
+                arr[i]=arr[j];
+                arr[j]=temp;
+                j++;
+            }
+            i++;
+        }
+        return j-1;  
+    }
+    public static void main(String[] args){
+        int[] arr={23,44,32,77,66,45,24};
+        quicksort(arr,0,arr.length-1);
+        for(int i : arr){
+            sysout(i);
+        }
+    }
+}
+----------------------------------------------------------------------------
+Binary search:-
+class BinarySearch {
+    int binarySearch(int arr[], int x)
+    {
+        int l = 0, r = arr.length - 1;
+        while (l <= r) {
+            int m = l + (r - l) / 2;
+            if (arr[m] == x)
+                return m;    //array must be sorted,find mid element and compare with key
+            if (arr[m] < x)  //if greater find in greater part
+                l = m + 1;
+            else
+                r = m - 1;
+        }
+        return -1;
+    }
+    public static void main(String args[])
+    {
+        BinarySearch ob = new BinarySearch();
+        int arr[] = { 2, 3, 4, 10, 40 };
+        int n = arr.length;
+        int x = 10;
+        int result = ob.binarySearch(arr, x);
+        if (result == -1)
+            System.out.println("Element is not present in array");      
+        else
+            System.out.println("Element is present at "  + "index " + result);                        
+    }
+}
+--------------------------------------------------------------------------------------
+Linear search:-
+public class LinearSearch{
+    public static int linear(int[] arr,int data){
+        for(int i=0;i<arr.length;i++){
+            if(arr[i]==data){
+                return i+1;
+            }
+        }
+        return -1;
+    }
+    public static void main(String[] args){
+        int[] arr={1,2,3,4,5,6};
+        sysout(linear(arr,5));
+    }
+}
